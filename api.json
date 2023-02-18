@@ -1,0 +1,165 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "BOTBIO"
+  },
+  "paths": {
+    "/connection": {
+      "get": {
+        "produces": [
+          "text/plain",
+          "application/json"
+        ],
+        "operationId": "getconection",
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "type": "string",
+              "description": "contains the actual greeting as plain text"
+            }
+          }
+        }
+      }
+    },
+    "/connection/{id}": {
+      "get": {
+        "produces": [
+          "text/plain",
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "getconnectionbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/connection"
+            }
+          }
+        }
+      },
+      "put": {
+        "produces": [
+          "text/plain",
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "putconnectionbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Ip",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "DateConnect",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/connection"
+            }
+          }
+        }
+      }
+    },
+    "/customer/{id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "getcustomerbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "connection": {
+      "description": "information connection",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "id in database",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "Ip": {
+          "description": "idnav",
+          "type": "string",
+          "x-go-name": "Ip"
+        },
+        "DateConnect": {
+          "description": "DateConnect",
+          "type": "string",
+          "x-go-name": "DateConnect"
+        }
+      }
+    },
+    "customer": {
+      "description": "information clients",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "id in database",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "Name": {
+          "description": "Nom du client",
+          "type": "string",
+          "x-go-name": "NameClient"
+        }
+      }
+    }
+  }
+}
