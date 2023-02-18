@@ -55,7 +55,12 @@ func configureAPI(api *operations.APIAPI) http.Handler {
 	api.CustomerGetconnectionbyidHandler = customer.GetconnectionbyidHandlerFunc(func(params customer.GetconnectionbyidParams) middleware.Responder {
 			return api_get_connection.DoGetConnection(params)
 	})
-	
+
+	api.CustomerGetcustomerbyidHandler = customer.GetcustomerbyidHandlerFunc(func(params customer.GetcustomerbyidParams) middleware.Responder {
+		return api_get_connection.DoGetCustomer(params)
+	})
+
+
 	api.PreServerShutdown = func() {}
 
 	api.ServerShutdown = func() {}
