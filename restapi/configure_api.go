@@ -10,7 +10,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 
-	"github.com/webcustomerapi/dbmodels"
+	"github.com/webcustomerapi1/dbmodels"
 
 	"github.com/webcustomerapi1/restapi/operations"
 	"github.com/webcustomerapi1/restapi/operations/customer"

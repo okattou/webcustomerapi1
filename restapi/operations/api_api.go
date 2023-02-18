@@ -19,7 +19,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/webcustomerapi/restapi/operations/customer"
+	"github.com/webcustomerapi1/restapi/operations/customer"
 )
 
 // NewAPIAPI creates a new API instance
@@ -50,6 +50,12 @@ func NewAPIAPI(spec *loads.Document) *APIAPI {
 		}),
 		CustomerGetconnectionbyidHandler: customer.GetconnectionbyidHandlerFunc(func(params customer.GetconnectionbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Getconnectionbyid has not yet been implemented")
+		}),
+		CustomerGetcustomerbyidHandler: customer.GetcustomerbyidHandlerFunc(func(params customer.GetcustomerbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation customer.Getcustomerbyid has not yet been implemented")
+		}),
+		CustomerPutconnectionbyidHandler: customer.PutconnectionbyidHandlerFunc(func(params customer.PutconnectionbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation customer.Putconnectionbyid has not yet been implemented")
 		}),
 	}
 }
@@ -94,6 +100,10 @@ type APIAPI struct {
 	GetconectionHandler GetconectionHandler
 	// CustomerGetconnectionbyidHandler sets the operation handler for the getconnectionbyid operation
 	CustomerGetconnectionbyidHandler customer.GetconnectionbyidHandler
+	// CustomerGetcustomerbyidHandler sets the operation handler for the getcustomerbyid operation
+	CustomerGetcustomerbyidHandler customer.GetcustomerbyidHandler
+	// CustomerPutconnectionbyidHandler sets the operation handler for the putconnectionbyid operation
+	CustomerPutconnectionbyidHandler customer.PutconnectionbyidHandler
 
 	// ServeError is called when an error is received, there is a default handler
 	// but you can set your own with this
@@ -179,6 +189,12 @@ func (o *APIAPI) Validate() error {
 	}
 	if o.CustomerGetconnectionbyidHandler == nil {
 		unregistered = append(unregistered, "customer.GetconnectionbyidHandler")
+	}
+	if o.CustomerGetcustomerbyidHandler == nil {
+		unregistered = append(unregistered, "customer.GetcustomerbyidHandler")
+	}
+	if o.CustomerPutconnectionbyidHandler == nil {
+		unregistered = append(unregistered, "customer.PutconnectionbyidHandler")
 	}
 
 	if len(unregistered) > 0 {
@@ -278,6 +294,14 @@ func (o *APIAPI) initHandlerCache() {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"]["/connection/{id}"] = customer.NewGetconnectionbyid(o.context, o.CustomerGetconnectionbyidHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/customer/{id}"] = customer.NewGetcustomerbyid(o.context, o.CustomerGetcustomerbyidHandler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
+	}
+	o.handlers["PUT"]["/connection/{id}"] = customer.NewPutconnectionbyid(o.context, o.CustomerPutconnectionbyidHandler)
 }
 
 // Serve creates a http handler to serve the API over HTTP

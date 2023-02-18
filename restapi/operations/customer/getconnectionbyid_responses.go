@@ -10,7 +10,7 @@ import (
 
 	"github.com/go-openapi/runtime"
 
-	"github.com/webcustomerapi/models"
+	"github.com/webcustomerapi1/models"
 )
 
 // GetconnectionbyidOKCode is the HTTP code returned for type GetconnectionbyidOK

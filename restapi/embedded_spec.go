@@ -70,6 +70,73 @@ func init() {
             }
           }
         }
+      },
+      "put": {
+        "produces": [
+          "text/plain",
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "putconnectionbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Ip",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "DateConnect",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/connection"
+            }
+          }
+        }
+      }
+    },
+    "/customer/{id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "getcustomerbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          }
+        }
       }
     }
   },
@@ -93,6 +160,23 @@ func init() {
           "description": "idnav",
           "type": "string",
           "x-go-name": "Ip"
+        }
+      }
+    },
+    "customer": {
+      "description": "information clients",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "id in database",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "Name": {
+          "description": "Nom du client",
+          "type": "string",
+          "x-go-name": "NameClient"
         }
       }
     }
@@ -151,6 +235,73 @@ func init() {
             }
           }
         }
+      },
+      "put": {
+        "produces": [
+          "application/json",
+          "text/plain"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "putconnectionbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Ip",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "DateConnect",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/connection"
+            }
+          }
+        }
+      }
+    },
+    "/customer/{id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "getcustomerbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          }
+        }
       }
     }
   },
@@ -174,6 +325,23 @@ func init() {
           "description": "idnav",
           "type": "string",
           "x-go-name": "Ip"
+        }
+      }
+    },
+    "customer": {
+      "description": "information clients",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "id in database",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "Name": {
+          "description": "Nom du client",
+          "type": "string",
+          "x-go-name": "NameClient"
         }
       }
     }
