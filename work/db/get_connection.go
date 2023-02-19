@@ -3,7 +3,8 @@ package db
 import (
 	"github.com/webcustomerapi1/dbmodels"
 	"github.com/webcustomerapi1/models"
-	"strconv"	
+	"strconv"
+	"database/sql"		
 )
 
 
@@ -21,14 +22,17 @@ type Repositories struct {
 // queryRepos first fetches the repositories data from the db
 func QueryRepos(repos *Repositories,id string) error {
 	db:=dbmodels.GetDB()
-	rows, err := db.Query("SELECT connect_id,ip,date_connect FROM connection where connect_id="+id)
-	if err != nil {
-		return err
+	var rows *sql.Rows
+	if (id=="null"){
+		rows, _ = db.Query("SELECT connect_id,ip,date_connect FROM connection")
+	}else{
+		rows, _ = db.Query("SELECT connect_id,ip,date_connect FROM connection where connect_id="+id)
 	}
+
 	defer rows.Close()
 	for rows.Next() {
 		repo := RepositorySummary{}
-		err = rows.Scan(
+		err := rows.Scan(
 			&repo.ID,
 			&repo.Ip,
 			&repo.DateConnect,
@@ -38,7 +42,7 @@ func QueryRepos(repos *Repositories,id string) error {
 		}
 		repos.Repositories = append(repos.Repositories, repo)
 	}
-	err = rows.Err()
+	err := rows.Err()
 	if err != nil {
 		return err
 	}
@@ -62,4 +66,19 @@ var TransformConnection = func(p int64) *models.Connection {
 		out=&models.Connection{}
 	}
 	return out 
+}
+
+
+var TransformConnectionall = func() []*models.Connection {
+	repos := Repositories{}
+	t1:="null"
+	err := QueryRepos(&repos,t1)
+	if err != nil {
+		return nil
+	}
+	data:= make([]*models.Connection,0)
+	for i := 0; i < len(repos.Repositories); i++ {
+		data =append(data, &models.Connection{ID:int64(repos.Repositories[i].ID), DateConnect: repos.Repositories[i].DateConnect,IP: repos.Repositories[i].Ip})
+	}
+	return data
 }

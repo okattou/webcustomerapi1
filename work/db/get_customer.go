@@ -3,7 +3,8 @@ package db
 import (
 	"github.com/webcustomerapi1/dbmodels"
 	"github.com/webcustomerapi1/models"
-	"strconv"	
+	"strconv"
+	"database/sql"	
 )
 
 
@@ -20,14 +21,17 @@ type Customers struct {
 // queryRepos first fetches the repositories data from the db
 func QueryRepos1(repos *Customers ,id string) error {
 	db:=dbmodels.GetDB()
-	rows, err := db.Query("SELECT customer_id,customer_name FROM customers where customer_id="+id)
-	if err != nil {
-		return err
+	var rows *sql.Rows
+	if (id=="null"){
+		rows, _ = db.Query("SELECT customer_id,customer_name FROM customers")
+	}else{
+		rows, _ = db.Query("SELECT customer_id,customer_name FROM customers where customer_id="+id)
 	}
+
 	defer rows.Close()
 	for rows.Next() {
 		repo := CustomerSummary{}
-		err = rows.Scan(
+		err := rows.Scan(
 			&repo.ID,
 			&repo.Name,
 		)
@@ -36,11 +40,10 @@ func QueryRepos1(repos *Customers ,id string) error {
 		}
 		repos.Customers = append(repos.Customers, repo)
 	}
-	err = rows.Err()
+	err := rows.Err()
 	if err != nil {
 		return err
 	}
-
 
 	return nil
 }
@@ -60,4 +63,19 @@ var TransformCustomer = func(p int64) *models.Customer {
 		out=&models.Customer{}
 	}
 	return out 
+}
+
+
+var TransformCustomerall = func() []*models.Customer {
+	repos := Customers{}
+	t1:="null"
+	err := QueryRepos1(&repos,t1)
+	if err != nil {
+		return nil
+	}
+	data:= make([]*models.Customer,0)
+	for i := 0; i < len(repos.Customers); i++ {
+		data =append(data, &models.Customer{ID:int64(repos.Customers[i].ID), NameClient: repos.Customers[i].Name})
+	}
+	return data
 }

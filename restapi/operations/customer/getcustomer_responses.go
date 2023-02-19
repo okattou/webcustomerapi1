@@ -26,7 +26,7 @@ type GetcustomerOK struct {
 	/*contains the actual greeting as plain text
 	  In: Body
 	*/
-	Payload []*models.Connection `json:"body,omitempty"`
+	Payload []*models.Customer `json:"body,omitempty"`
 }
 
 // NewGetcustomerOK creates GetcustomerOK with default headers values
@@ -36,13 +36,13 @@ func NewGetcustomerOK() *GetcustomerOK {
 }
 
 // WithPayload adds the payload to the getcustomer o k response
-func (o *GetcustomerOK) WithPayload(payload []*models.Connection) *GetcustomerOK {
+func (o *GetcustomerOK) WithPayload(payload []*models.Customer) *GetcustomerOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the getcustomer o k response
-func (o *GetcustomerOK) SetPayload(payload []*models.Connection) {
+func (o *GetcustomerOK) SetPayload(payload []*models.Customer) {
 	o.Payload = payload
 }
 
@@ -53,7 +53,7 @@ func (o *GetcustomerOK) WriteResponse(rw http.ResponseWriter, producer runtime.P
 	payload := o.Payload
 	if payload == nil {
 		// return empty array
-		payload = make([]*models.Connection, 0, 50)
+		payload = make([]*models.Customer, 0, 50)
 	}
 
 	if err := producer.Produce(rw, payload); err != nil {

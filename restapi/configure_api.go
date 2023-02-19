@@ -14,8 +14,10 @@ import (
 
 	"github.com/webcustomerapi1/restapi/operations"
 	"github.com/webcustomerapi1/restapi/operations/customer"
+	"github.com/webcustomerapi1/restapi/operations/connection"
 
-	api_get_connection "github.com/webcustomerapi1/work/api/customer"
+	api_get_connection "github.com/webcustomerapi1/work/api/connection"
+	api_get_customer "github.com/webcustomerapi1/work/api/customer"
 )
 
 //go:generate swagger generate server --target ../../webcustomerapi --name API --spec ../api.json --principal interface{}
@@ -45,21 +47,21 @@ func configureAPI(api *operations.APIAPI) http.Handler {
 
 	api.JSONConsumer = runtime.JSONConsumer()
 
-	api.TxtProducer = runtime.TextProducer()
-
-	if api.GetconectionHandler == nil {
-		api.GetconectionHandler = operations.GetconectionHandlerFunc(func(params operations.GetconectionParams) middleware.Responder {
-			return middleware.NotImplemented("operation operations.Getconection has not yet been implemented")
-		})
-	}
-	api.CustomerGetconnectionbyidHandler = customer.GetconnectionbyidHandlerFunc(func(params customer.GetconnectionbyidParams) middleware.Responder {
+	
+	api.ConnectionGetconectionHandler = connection.GetconectionHandlerFunc(func(params connection.GetconectionParams) middleware.Responder {
+		return api_get_connection.DoGetConnectionAll(params)
+	})
+	api.ConnectionGetconnectionbyidHandler = connection.GetconnectionbyidHandlerFunc(func(params connection.GetconnectionbyidParams) middleware.Responder {
 			return api_get_connection.DoGetConnection(params)
 	})
 
 	api.CustomerGetcustomerbyidHandler = customer.GetcustomerbyidHandlerFunc(func(params customer.GetcustomerbyidParams) middleware.Responder {
-		return api_get_connection.DoGetCustomer(params)
+		return api_get_customer.DoGetCustomer(params)
 	})
 
+	api.CustomerGetcustomerHandler = customer.GetcustomerHandlerFunc(func(params customer.GetcustomerParams) middleware.Responder {
+		return api_get_customer.DoGetCustomerAll(params)
+	})
 
 	api.PreServerShutdown = func() {}
 

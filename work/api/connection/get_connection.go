@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/webcustomerapi1/work/db"
-	api "github.com/webcustomerapi1/restapi/operations/customer"
+	api "github.com/webcustomerapi1/restapi/operations/connection"
 )
 
 

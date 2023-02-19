@@ -8,16 +8,21 @@
     "/connection": {
       "get": {
         "produces": [
-          "text/plain",
           "application/json"
+        ],
+        "tags": [
+          "connection"
         ],
         "operationId": "getconection",
         "responses": {
           "200": {
             "description": "returns a greeting",
             "schema": {
-              "type": "string",
-              "description": "contains the actual greeting as plain text"
+              "type": "array",
+              "description": "contains the actual greeting as plain text",
+              "items": {
+                "$ref": "#/definitions/connection"
+              }
             }
           }
         }
@@ -26,11 +31,10 @@
     "/connection/{id}": {
       "get": {
         "produces": [
-          "text/plain",
           "application/json"
         ],
         "tags": [
-          "customer"
+          "connection"
         ],
         "operationId": "getconnectionbyid",
         "parameters": [
@@ -54,11 +58,10 @@
       },
       "put": {
         "produces": [
-          "text/plain",
           "application/json"
         ],
         "tags": [
-          "customer"
+          "connection"
         ],
         "operationId": "putconnectionbyid",
         "parameters": [
@@ -91,6 +94,29 @@
         }
       }
     },
+    "/customer": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "getcustomer",
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "type": "array",
+              "description": "contains the actual greeting as plain text",
+              "items": {
+                "$ref": "#/definitions/customer"
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer/{id}": {
       "get": {
         "produces": [
@@ -100,6 +126,33 @@
           "customer"
         ],
         "operationId": "getcustomerbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          }
+        }
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "putcustomerbyid",
         "parameters": [
           {
             "type": "integer",

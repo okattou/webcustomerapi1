@@ -68,8 +68,8 @@ server.Port=8080
 
 
 
-export DBHOST=127.0.0.01
-export DBPORT=5342
+export DBHOST=192.168.1.21
+export DBPORT=9006
 export DBUSER=postgres
 export DBPASS=postgres
 export DBNAME=postgres
