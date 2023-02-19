@@ -65,7 +65,7 @@ aller a la ligne 27
 	server.Port =8080
 server.Port=8080
 
-
+sudo docker build -tag "web" .
 
 
 export DBHOST=192.168.1.21
@@ -73,13 +73,16 @@ export DBPORT=9006
 export DBUSER=postgres
 export DBPASS=postgres
 export DBNAME=postgres
-
+export HOST=192.168.1.21
 
 go run cmd/api-server/main.go
 
-
-
-
+sudo docker build -t web:v1 .
+ sudo docker run -it --rm web:v1 /bin/sh
+ sudo docker run -it --rm web:v1
+ sudo docker run -it -p 8080:9007 --rm web:v1
+ docker run --name mysql-container -e MYSQL ROOT PASSWORD=thisIsAPassword -d mysql:latest
+sudo docker run -p 192.168.1.21:9007:8080 -p 192.168.1.21:9008:8081 -it web:v1 /bin/sh
 
 DROP TABLE IF EXISTS connection;
 DROP TABLE IF EXISTS connection_customers;
@@ -145,3 +148,4 @@ INSERT INTO contacts(customer_id, contact_name, phone, email)
 VALUES(1,'John Doe','(408)-111-1234','john.doe@bluebird.dev'),
       (1,'Jane Doe','(408)-111-1235','jane.doe@bluebird.dev'),
       (2,'David Wright','(408)-222-1234','david.wright@dolphin.dev');
+ sudo docker run -p 8080:8080 -p 8081:8081 -it web:v1
