@@ -27,8 +27,10 @@ func init() {
     "/connection": {
       "get": {
         "produces": [
-          "text/plain",
           "application/json"
+        ],
+        "tags": [
+          "connection"
         ],
         "operationId": "getconection",
         "responses": {
@@ -36,7 +38,10 @@ func init() {
             "description": "returns a greeting",
             "schema": {
               "description": "contains the actual greeting as plain text",
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/connection"
+              }
             }
           }
         }
@@ -45,11 +50,10 @@ func init() {
     "/connection/{id}": {
       "get": {
         "produces": [
-          "text/plain",
           "application/json"
         ],
         "tags": [
-          "customer"
+          "connection"
         ],
         "operationId": "getconnectionbyid",
         "parameters": [
@@ -73,11 +77,10 @@ func init() {
       },
       "put": {
         "produces": [
-          "text/plain",
           "application/json"
         ],
         "tags": [
-          "customer"
+          "connection"
         ],
         "operationId": "putconnectionbyid",
         "parameters": [
@@ -110,6 +113,29 @@ func init() {
         }
       }
     },
+    "/customer": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "getcustomer",
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "description": "contains the actual greeting as plain text",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/customer"
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer/{id}": {
       "get": {
         "produces": [
@@ -119,6 +145,33 @@ func init() {
           "customer"
         ],
         "operationId": "getcustomerbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          }
+        }
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "putcustomerbyid",
         "parameters": [
           {
             "type": "integer",
@@ -192,8 +245,10 @@ func init() {
     "/connection": {
       "get": {
         "produces": [
-          "application/json",
-          "text/plain"
+          "application/json"
+        ],
+        "tags": [
+          "connection"
         ],
         "operationId": "getconection",
         "responses": {
@@ -201,7 +256,10 @@ func init() {
             "description": "returns a greeting",
             "schema": {
               "description": "contains the actual greeting as plain text",
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/connection"
+              }
             }
           }
         }
@@ -210,11 +268,10 @@ func init() {
     "/connection/{id}": {
       "get": {
         "produces": [
-          "application/json",
-          "text/plain"
+          "application/json"
         ],
         "tags": [
-          "customer"
+          "connection"
         ],
         "operationId": "getconnectionbyid",
         "parameters": [
@@ -238,11 +295,10 @@ func init() {
       },
       "put": {
         "produces": [
-          "application/json",
-          "text/plain"
+          "application/json"
         ],
         "tags": [
-          "customer"
+          "connection"
         ],
         "operationId": "putconnectionbyid",
         "parameters": [
@@ -275,6 +331,29 @@ func init() {
         }
       }
     },
+    "/customer": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "getcustomer",
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "description": "contains the actual greeting as plain text",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/customer"
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer/{id}": {
       "get": {
         "produces": [
@@ -284,6 +363,33 @@ func init() {
           "customer"
         ],
         "operationId": "getcustomerbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          }
+        }
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customer"
+        ],
+        "operationId": "putcustomerbyid",
         "parameters": [
           {
             "type": "integer",

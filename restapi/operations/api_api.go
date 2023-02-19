@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
+	"github.com/webcustomerapi1/restapi/operations/connection"
 	"github.com/webcustomerapi1/restapi/operations/customer"
 )
 
@@ -43,19 +44,24 @@ func NewAPIAPI(spec *loads.Document) *APIAPI {
 		JSONConsumer: runtime.JSONConsumer(),
 
 		JSONProducer: runtime.JSONProducer(),
-		TxtProducer:  runtime.TextProducer(),
 
-		GetconectionHandler: GetconectionHandlerFunc(func(params GetconectionParams) middleware.Responder {
-			return middleware.NotImplemented("operation Getconection has not yet been implemented")
+		ConnectionGetconectionHandler: connection.GetconectionHandlerFunc(func(params connection.GetconectionParams) middleware.Responder {
+			return middleware.NotImplemented("operation connection.Getconection has not yet been implemented")
 		}),
-		CustomerGetconnectionbyidHandler: customer.GetconnectionbyidHandlerFunc(func(params customer.GetconnectionbyidParams) middleware.Responder {
-			return middleware.NotImplemented("operation customer.Getconnectionbyid has not yet been implemented")
+		ConnectionGetconnectionbyidHandler: connection.GetconnectionbyidHandlerFunc(func(params connection.GetconnectionbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation connection.Getconnectionbyid has not yet been implemented")
+		}),
+		CustomerGetcustomerHandler: customer.GetcustomerHandlerFunc(func(params customer.GetcustomerParams) middleware.Responder {
+			return middleware.NotImplemented("operation customer.Getcustomer has not yet been implemented")
 		}),
 		CustomerGetcustomerbyidHandler: customer.GetcustomerbyidHandlerFunc(func(params customer.GetcustomerbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Getcustomerbyid has not yet been implemented")
 		}),
-		CustomerPutconnectionbyidHandler: customer.PutconnectionbyidHandlerFunc(func(params customer.PutconnectionbyidParams) middleware.Responder {
-			return middleware.NotImplemented("operation customer.Putconnectionbyid has not yet been implemented")
+		ConnectionPutconnectionbyidHandler: connection.PutconnectionbyidHandlerFunc(func(params connection.PutconnectionbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation connection.Putconnectionbyid has not yet been implemented")
+		}),
+		CustomerPutcustomerbyidHandler: customer.PutcustomerbyidHandlerFunc(func(params customer.PutcustomerbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation customer.Putcustomerbyid has not yet been implemented")
 		}),
 	}
 }
@@ -92,18 +98,19 @@ type APIAPI struct {
 	// JSONProducer registers a producer for the following mime types:
 	//   - application/json
 	JSONProducer runtime.Producer
-	// TxtProducer registers a producer for the following mime types:
-	//   - text/plain
-	TxtProducer runtime.Producer
 
-	// GetconectionHandler sets the operation handler for the getconection operation
-	GetconectionHandler GetconectionHandler
-	// CustomerGetconnectionbyidHandler sets the operation handler for the getconnectionbyid operation
-	CustomerGetconnectionbyidHandler customer.GetconnectionbyidHandler
+	// ConnectionGetconectionHandler sets the operation handler for the getconection operation
+	ConnectionGetconectionHandler connection.GetconectionHandler
+	// ConnectionGetconnectionbyidHandler sets the operation handler for the getconnectionbyid operation
+	ConnectionGetconnectionbyidHandler connection.GetconnectionbyidHandler
+	// CustomerGetcustomerHandler sets the operation handler for the getcustomer operation
+	CustomerGetcustomerHandler customer.GetcustomerHandler
 	// CustomerGetcustomerbyidHandler sets the operation handler for the getcustomerbyid operation
 	CustomerGetcustomerbyidHandler customer.GetcustomerbyidHandler
-	// CustomerPutconnectionbyidHandler sets the operation handler for the putconnectionbyid operation
-	CustomerPutconnectionbyidHandler customer.PutconnectionbyidHandler
+	// ConnectionPutconnectionbyidHandler sets the operation handler for the putconnectionbyid operation
+	ConnectionPutconnectionbyidHandler connection.PutconnectionbyidHandler
+	// CustomerPutcustomerbyidHandler sets the operation handler for the putcustomerbyid operation
+	CustomerPutcustomerbyidHandler customer.PutcustomerbyidHandler
 
 	// ServeError is called when an error is received, there is a default handler
 	// but you can set your own with this
@@ -180,21 +187,24 @@ func (o *APIAPI) Validate() error {
 	if o.JSONProducer == nil {
 		unregistered = append(unregistered, "JSONProducer")
 	}
-	if o.TxtProducer == nil {
-		unregistered = append(unregistered, "TxtProducer")
-	}
 
-	if o.GetconectionHandler == nil {
-		unregistered = append(unregistered, "GetconectionHandler")
+	if o.ConnectionGetconectionHandler == nil {
+		unregistered = append(unregistered, "connection.GetconectionHandler")
 	}
-	if o.CustomerGetconnectionbyidHandler == nil {
-		unregistered = append(unregistered, "customer.GetconnectionbyidHandler")
+	if o.ConnectionGetconnectionbyidHandler == nil {
+		unregistered = append(unregistered, "connection.GetconnectionbyidHandler")
+	}
+	if o.CustomerGetcustomerHandler == nil {
+		unregistered = append(unregistered, "customer.GetcustomerHandler")
 	}
 	if o.CustomerGetcustomerbyidHandler == nil {
 		unregistered = append(unregistered, "customer.GetcustomerbyidHandler")
 	}
-	if o.CustomerPutconnectionbyidHandler == nil {
-		unregistered = append(unregistered, "customer.PutconnectionbyidHandler")
+	if o.ConnectionPutconnectionbyidHandler == nil {
+		unregistered = append(unregistered, "connection.PutconnectionbyidHandler")
+	}
+	if o.CustomerPutcustomerbyidHandler == nil {
+		unregistered = append(unregistered, "customer.PutcustomerbyidHandler")
 	}
 
 	if len(unregistered) > 0 {
@@ -244,8 +254,6 @@ func (o *APIAPI) ProducersFor(mediaTypes []string) map[string]runtime.Producer {
 		switch mt {
 		case "application/json":
 			result["application/json"] = o.JSONProducer
-		case "text/plain":
-			result["text/plain"] = o.TxtProducer
 		}
 
 		if p, ok := o.customProducers[mt]; ok {
@@ -289,11 +297,15 @@ func (o *APIAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/connection"] = NewGetconection(o.context, o.GetconectionHandler)
+	o.handlers["GET"]["/connection"] = connection.NewGetconection(o.context, o.ConnectionGetconectionHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/connection/{id}"] = customer.NewGetconnectionbyid(o.context, o.CustomerGetconnectionbyidHandler)
+	o.handlers["GET"]["/connection/{id}"] = connection.NewGetconnectionbyid(o.context, o.ConnectionGetconnectionbyidHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/customer"] = customer.NewGetcustomer(o.context, o.CustomerGetcustomerHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
@@ -301,7 +313,11 @@ func (o *APIAPI) initHandlerCache() {
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/connection/{id}"] = customer.NewPutconnectionbyid(o.context, o.CustomerPutconnectionbyidHandler)
+	o.handlers["PUT"]["/connection/{id}"] = connection.NewPutconnectionbyid(o.context, o.ConnectionPutconnectionbyidHandler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
+	}
+	o.handlers["PUT"]["/customer/{id}"] = customer.NewPutcustomerbyid(o.context, o.CustomerPutcustomerbyidHandler)
 }
 
 // Serve creates a http handler to serve the API over HTTP
