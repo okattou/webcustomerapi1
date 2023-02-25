@@ -113,6 +113,85 @@ func init() {
         }
       }
     },
+    "/contact": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contact"
+        ],
+        "operationId": "getcontact",
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "description": "contains the actual greeting as plain text",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/contact"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contact/{id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contact"
+        ],
+        "operationId": "getcontactbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        }
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contact"
+        ],
+        "operationId": "putcontactbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        }
+      }
+    },
     "/customer": {
       "get": {
         "produces": [
@@ -213,6 +292,23 @@ func init() {
           "description": "idnav",
           "type": "string",
           "x-go-name": "Ip"
+        }
+      }
+    },
+    "contact": {
+      "description": "information clients",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "id in database",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "Name": {
+          "description": "Contact du client",
+          "type": "string",
+          "x-go-name": "contactClient"
         }
       }
     },
@@ -331,6 +427,85 @@ func init() {
         }
       }
     },
+    "/contact": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contact"
+        ],
+        "operationId": "getcontact",
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "description": "contains the actual greeting as plain text",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/contact"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contact/{id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contact"
+        ],
+        "operationId": "getcontactbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        }
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "contact"
+        ],
+        "operationId": "putcontactbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        }
+      }
+    },
     "/customer": {
       "get": {
         "produces": [
@@ -431,6 +606,23 @@ func init() {
           "description": "idnav",
           "type": "string",
           "x-go-name": "Ip"
+        }
+      }
+    },
+    "contact": {
+      "description": "information clients",
+      "type": "object",
+      "properties": {
+        "ID": {
+          "description": "id in database",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "Name": {
+          "description": "Contact du client",
+          "type": "string",
+          "x-go-name": "contactClient"
         }
       }
     },

@@ -20,6 +20,7 @@ import (
 	"github.com/go-openapi/swag"
 
 	"github.com/webcustomerapi1/restapi/operations/connection"
+	"github.com/webcustomerapi1/restapi/operations/contact"
 	"github.com/webcustomerapi1/restapi/operations/customer"
 )
 
@@ -51,6 +52,12 @@ func NewAPIAPI(spec *loads.Document) *APIAPI {
 		ConnectionGetconnectionbyidHandler: connection.GetconnectionbyidHandlerFunc(func(params connection.GetconnectionbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation connection.Getconnectionbyid has not yet been implemented")
 		}),
+		ContactGetcontactHandler: contact.GetcontactHandlerFunc(func(params contact.GetcontactParams) middleware.Responder {
+			return middleware.NotImplemented("operation contact.Getcontact has not yet been implemented")
+		}),
+		ContactGetcontactbyidHandler: contact.GetcontactbyidHandlerFunc(func(params contact.GetcontactbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation contact.Getcontactbyid has not yet been implemented")
+		}),
 		CustomerGetcustomerHandler: customer.GetcustomerHandlerFunc(func(params customer.GetcustomerParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Getcustomer has not yet been implemented")
 		}),
@@ -59,6 +66,9 @@ func NewAPIAPI(spec *loads.Document) *APIAPI {
 		}),
 		ConnectionPutconnectionbyidHandler: connection.PutconnectionbyidHandlerFunc(func(params connection.PutconnectionbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation connection.Putconnectionbyid has not yet been implemented")
+		}),
+		ContactPutcontactbyidHandler: contact.PutcontactbyidHandlerFunc(func(params contact.PutcontactbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation contact.Putcontactbyid has not yet been implemented")
 		}),
 		CustomerPutcustomerbyidHandler: customer.PutcustomerbyidHandlerFunc(func(params customer.PutcustomerbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Putcustomerbyid has not yet been implemented")
@@ -103,12 +113,18 @@ type APIAPI struct {
 	ConnectionGetconectionHandler connection.GetconectionHandler
 	// ConnectionGetconnectionbyidHandler sets the operation handler for the getconnectionbyid operation
 	ConnectionGetconnectionbyidHandler connection.GetconnectionbyidHandler
+	// ContactGetcontactHandler sets the operation handler for the getcontact operation
+	ContactGetcontactHandler contact.GetcontactHandler
+	// ContactGetcontactbyidHandler sets the operation handler for the getcontactbyid operation
+	ContactGetcontactbyidHandler contact.GetcontactbyidHandler
 	// CustomerGetcustomerHandler sets the operation handler for the getcustomer operation
 	CustomerGetcustomerHandler customer.GetcustomerHandler
 	// CustomerGetcustomerbyidHandler sets the operation handler for the getcustomerbyid operation
 	CustomerGetcustomerbyidHandler customer.GetcustomerbyidHandler
 	// ConnectionPutconnectionbyidHandler sets the operation handler for the putconnectionbyid operation
 	ConnectionPutconnectionbyidHandler connection.PutconnectionbyidHandler
+	// ContactPutcontactbyidHandler sets the operation handler for the putcontactbyid operation
+	ContactPutcontactbyidHandler contact.PutcontactbyidHandler
 	// CustomerPutcustomerbyidHandler sets the operation handler for the putcustomerbyid operation
 	CustomerPutcustomerbyidHandler customer.PutcustomerbyidHandler
 
@@ -194,6 +210,12 @@ func (o *APIAPI) Validate() error {
 	if o.ConnectionGetconnectionbyidHandler == nil {
 		unregistered = append(unregistered, "connection.GetconnectionbyidHandler")
 	}
+	if o.ContactGetcontactHandler == nil {
+		unregistered = append(unregistered, "contact.GetcontactHandler")
+	}
+	if o.ContactGetcontactbyidHandler == nil {
+		unregistered = append(unregistered, "contact.GetcontactbyidHandler")
+	}
 	if o.CustomerGetcustomerHandler == nil {
 		unregistered = append(unregistered, "customer.GetcustomerHandler")
 	}
@@ -202,6 +224,9 @@ func (o *APIAPI) Validate() error {
 	}
 	if o.ConnectionPutconnectionbyidHandler == nil {
 		unregistered = append(unregistered, "connection.PutconnectionbyidHandler")
+	}
+	if o.ContactPutcontactbyidHandler == nil {
+		unregistered = append(unregistered, "contact.PutcontactbyidHandler")
 	}
 	if o.CustomerPutcustomerbyidHandler == nil {
 		unregistered = append(unregistered, "customer.PutcustomerbyidHandler")
@@ -305,6 +330,14 @@ func (o *APIAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
+	o.handlers["GET"]["/contact"] = contact.NewGetcontact(o.context, o.ContactGetcontactHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/contact/{id}"] = contact.NewGetcontactbyid(o.context, o.ContactGetcontactbyidHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
 	o.handlers["GET"]["/customer"] = customer.NewGetcustomer(o.context, o.CustomerGetcustomerHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
@@ -314,6 +347,10 @@ func (o *APIAPI) initHandlerCache() {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
 	o.handlers["PUT"]["/connection/{id}"] = connection.NewPutconnectionbyid(o.context, o.ConnectionPutconnectionbyidHandler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
+	}
+	o.handlers["PUT"]["/contact/{id}"] = contact.NewPutcontactbyid(o.context, o.ContactPutcontactbyidHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}

@@ -9,6 +9,7 @@ require (
 	github.com/go-openapi/spec v0.20.4
 	github.com/go-openapi/strfmt v0.21.3
 	github.com/go-openapi/swag v0.22.3
+	github.com/go-openapi/validate v0.21.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/lib/pq v1.10.7
 	golang.org/x/net v0.0.0-20220722155237-a158d28d115b
@@ -22,7 +23,6 @@ require (
 	github.com/go-openapi/analysis v0.21.2 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.19.6 // indirect
-	github.com/go-openapi/validate v0.21.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect

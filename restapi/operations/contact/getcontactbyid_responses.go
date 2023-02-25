@@ -26,7 +26,7 @@ type GetcontactbyidOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *models.Customer `json:"body,omitempty"`
+	Payload *models.Contact `json:"body,omitempty"`
 }
 
 // NewGetcontactbyidOK creates GetcontactbyidOK with default headers values
@@ -36,13 +36,13 @@ func NewGetcontactbyidOK() *GetcontactbyidOK {
 }
 
 // WithPayload adds the payload to the getcontactbyid o k response
-func (o *GetcontactbyidOK) WithPayload(payload *models.Customer) *GetcontactbyidOK {
+func (o *GetcontactbyidOK) WithPayload(payload *models.Contact) *GetcontactbyidOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the getcontactbyid o k response
-func (o *GetcontactbyidOK) SetPayload(payload *models.Customer) {
+func (o *GetcontactbyidOK) SetPayload(payload *models.Contact) {
 	o.Payload = payload
 }
 

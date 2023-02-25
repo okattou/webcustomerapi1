@@ -1,314 +1,211 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "version": "0.0.1",
-    "title": "BOTBIO"
-  },
-  "paths": {
-    "/connection": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "connection"
-        ],
-        "operationId": "getconection",
-        "responses": {
-          "200": {
-            "description": "returns a greeting",
-            "schema": {
-              "type": "array",
-              "description": "contains the actual greeting as plain text",
-              "items": {
-                "$ref": "#/definitions/connection"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/connection/{id}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "connection"
-        ],
-        "operationId": "getconnectionbyid",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of user in database",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "information connection",
-            "schema": {
-              "$ref": "#/definitions/connection"
-            }
-          }
-        }
-      },
-      "put": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "connection"
-        ],
-        "operationId": "putconnectionbyid",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of user in database",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "Ip",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "DateConnect",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "information connection",
-            "schema": {
-              "$ref": "#/definitions/connection"
-            }
-          }
-        }
-      }
-    },
-    "/customer": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "customer"
-        ],
-        "operationId": "getcustomer",
-        "responses": {
-          "200": {
-            "description": "returns a greeting",
-            "schema": {
-              "type": "array",
-              "description": "contains the actual greeting as plain text",
-              "items": {
-                "$ref": "#/definitions/customer"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/customer/{id}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "customer"
-        ],
-        "operationId": "getcustomerbyid",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of user in database",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "information connection",
-            "schema": {
-              "$ref": "#/definitions/customer"
-            }
-          }
-        }
-      },
-      "put": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "customer"
-        ],
-        "operationId": "putcustomerbyid",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of user in database",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "information connection",
-            "schema": {
-              "$ref": "#/definitions/customer"
-            }
-          }
-        }
-      }
-    },
-    "/contact": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "contact"
-        ],
-        "operationId": "getcontact",
-        "responses": {
-          "200": {
-            "description": "returns a greeting",
-            "schema": {
-              "type": "array",
-              "description": "contains the actual greeting as plain text",
-              "items": {
-                "$ref": "#/definitions/contact"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/contact/{id}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "contact"
-        ],
-        "operationId": "getcontactbyid",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of user in database",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "information connection",
-            "schema": {
-              "$ref": "#/definitions/contact"
-            }
-          }
-        }
-      },
-      "put": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "contact"
-        ],
-        "operationId": "putcontactbyid",
-        "parameters": [
-          {
-            "type": "integer",
-            "format": "int64",
-            "description": "ID of user in database",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "information connection",
-            "schema": {
-              "$ref": "#/definitions/contact"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "connection": {
-      "description": "information connection",
-      "type": "object",
-      "properties": {
-        "ID": {
-          "description": "id in database",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Id"
-        },
-        "Ip": {
-          "description": "idnav",
-          "type": "string",
-          "x-go-name": "Ip"
-        },
-        "DateConnect": {
-          "description": "DateConnect",
-          "type": "string",
-          "x-go-name": "DateConnect"
-        }
-      }
-    },
-    "customer": {
-      "description": "information clients",
-      "type": "object",
-      "properties": {
-        "ID": {
-          "description": "id in database",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Id"
-        },
-        "Name": {
-          "description": "Nom du client",
-          "type": "string",
-          "x-go-name": "NameClient"
-        }
-      }
-    },
-    "contact": {
-      "description": "information clients",
-      "type": "object",
-      "properties": {
-        "ID": {
-          "description": "id in database",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Id"
-        },
-        "Name": {
-          "description": "Contact du client",
-          "type": "string",
-          "x-go-name": "contactClient"
-        }
-      }
-    }
-  }
-}
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: BOTBIO
+paths:
+  /connection:
+    get:
+      produces:
+        - application/json
+      tags:
+        - connection
+      operationId: getconection
+      responses:
+        '200':
+          description: returns a greeting
+          schema:
+            type: array
+            description: contains the actual greeting as plain text
+            items:
+              $ref: '#/definitions/connection'
+  /connection/{id}:
+    get:
+      produces:
+        - application/json
+      tags:
+        - connection
+      operationId: getconnectionbyid
+      parameters:
+        - type: integer
+          format: int64
+          description: ID of user in database
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information connection
+          schema:
+            $ref: '#/definitions/connection'
+    put:
+      produces:
+        - application/json
+      tags:
+        - connection
+      operationId: putconnectionbyid
+      parameters:
+        - type: integer
+          format: int64
+          description: ID of user in database
+          name: id
+          in: path
+          required: true
+        - name: Ip
+          in: query
+          type: string
+        - name: DateConnect
+          in: query
+          type: string
+      responses:
+        '200':
+          description: information connection
+          schema:
+            $ref: '#/definitions/connection'
+  /customer:
+    get:
+      produces:
+        - application/json
+      tags:
+        - customer
+      operationId: getcustomer
+      responses:
+        '200':
+          description: returns a greeting
+          schema:
+            type: array
+            description: contains the actual greeting as plain text
+            items:
+              $ref: '#/definitions/customer'
+  /customer/{id}:
+    get:
+      produces:
+        - application/json
+      tags:
+        - customer
+      operationId: getcustomerbyid
+      parameters:
+        - type: integer
+          format: int64
+          description: ID of user in database
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information connection
+          schema:
+            $ref: '#/definitions/customer'
+    put:
+      produces:
+        - application/json
+      tags:
+        - customer
+      operationId: putcustomerbyid
+      parameters:
+        - type: integer
+          format: int64
+          description: ID of user in database
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information connection
+          schema:
+            $ref: '#/definitions/customer'
+  /contact:
+    get:
+      produces:
+        - application/json
+      tags:
+        - contact
+      operationId: getcontact
+      responses:
+        '200':
+          description: returns a greeting
+          schema:
+            type: array
+            description: contains the actual greeting as plain text
+            items:
+              $ref: '#/definitions/contact'
+  /contact/{id}:
+    get:
+      produces:
+        - application/json
+      tags:
+        - contact
+      operationId: getcontactbyid
+      parameters:
+        - type: integer
+          format: int64
+          description: ID of user in database
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information connection
+          schema:
+            $ref: '#/definitions/contact'
+    put:
+      produces:
+        - application/json
+      tags:
+        - contact
+      operationId: putcontactbyid
+      parameters:
+        - type: integer
+          format: int64
+          description: ID of user in database
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information connection
+          schema:
+            $ref: '#/definitions/contact'
+definitions:
+  connection:
+    description: information connection
+    type: object
+    properties:
+      ID:
+        description: id in database
+        type: integer
+        format: int64
+        x-go-name: Id
+      Ip:
+        description: idnav
+        type: string
+        x-go-name: Ip
+      DateConnect:
+        description: DateConnect
+        type: string
+        x-go-name: DateConnect
+  customer:
+    description: information clients
+    type: object
+    properties:
+      ID:
+        description: id in database
+        type: integer
+        format: int64
+        x-go-name: Id
+      Name:
+        description: Nom du client
+        type: string
+        x-go-name: NameClient
+  contact:
+    description: information clients
+    type: object
+    properties:
+      ID:
+        description: id in database
+        type: integer
+        format: int64
+        x-go-name: Id
+      Name:
+        description: Contact du client
+        type: string
+        x-go-name: contactClient
