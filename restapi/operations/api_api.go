@@ -57,6 +57,12 @@ func NewAPIAPI(spec *loads.Document) *APIAPI {
 		CustomerGetcustomerbyidHandler: customer.GetcustomerbyidHandlerFunc(func(params customer.GetcustomerbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Getcustomerbyid has not yet been implemented")
 		}),
+		ConnectionPostconectionHandler: connection.PostconectionHandlerFunc(func(params connection.PostconectionParams) middleware.Responder {
+			return middleware.NotImplemented("operation connection.Postconection has not yet been implemented")
+		}),
+		CustomerPostcustomerHandler: customer.PostcustomerHandlerFunc(func(params customer.PostcustomerParams) middleware.Responder {
+			return middleware.NotImplemented("operation customer.Postcustomer has not yet been implemented")
+		}),
 		ConnectionPutconnectionbyidHandler: connection.PutconnectionbyidHandlerFunc(func(params connection.PutconnectionbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation connection.Putconnectionbyid has not yet been implemented")
 		}),
@@ -107,6 +113,10 @@ type APIAPI struct {
 	CustomerGetcustomerHandler customer.GetcustomerHandler
 	// CustomerGetcustomerbyidHandler sets the operation handler for the getcustomerbyid operation
 	CustomerGetcustomerbyidHandler customer.GetcustomerbyidHandler
+	// ConnectionPostconectionHandler sets the operation handler for the postconection operation
+	ConnectionPostconectionHandler connection.PostconectionHandler
+	// CustomerPostcustomerHandler sets the operation handler for the postcustomer operation
+	CustomerPostcustomerHandler customer.PostcustomerHandler
 	// ConnectionPutconnectionbyidHandler sets the operation handler for the putconnectionbyid operation
 	ConnectionPutconnectionbyidHandler connection.PutconnectionbyidHandler
 	// CustomerPutcustomerbyidHandler sets the operation handler for the putcustomerbyid operation
@@ -199,6 +209,12 @@ func (o *APIAPI) Validate() error {
 	}
 	if o.CustomerGetcustomerbyidHandler == nil {
 		unregistered = append(unregistered, "customer.GetcustomerbyidHandler")
+	}
+	if o.ConnectionPostconectionHandler == nil {
+		unregistered = append(unregistered, "connection.PostconectionHandler")
+	}
+	if o.CustomerPostcustomerHandler == nil {
+		unregistered = append(unregistered, "customer.PostcustomerHandler")
 	}
 	if o.ConnectionPutconnectionbyidHandler == nil {
 		unregistered = append(unregistered, "connection.PutconnectionbyidHandler")
@@ -310,6 +326,14 @@ func (o *APIAPI) initHandlerCache() {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"]["/customer/{id}"] = customer.NewGetcustomerbyid(o.context, o.CustomerGetcustomerbyidHandler)
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/connection"] = connection.NewPostconection(o.context, o.ConnectionPostconectionHandler)
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/customer"] = customer.NewPostcustomer(o.context, o.CustomerPostcustomerHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}

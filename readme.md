@@ -74,7 +74,7 @@ export DBUSER=postgres
 export DBPASS=postgres
 export DBNAME=postgres
 export HOST=192.168.1.21
-
+export PORT=8080
 go run cmd/api-server/main.go
 
 sudo docker build -t web:v1 .
