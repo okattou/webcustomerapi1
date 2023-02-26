@@ -73,6 +73,15 @@ func configureAPI(api *operations.APIAPI) http.Handler {
 		return api_get_customer.DoGetCustomerAll(params)
 	})
 
+	api.CustomerPutcustomerbyidHandler=customer.PutcustomerbyidHandlerFunc(func(params customer.PutcustomerbyidParams) middleware.Responder {
+		return api_get_customer.DoPutCustomer(params)
+	})
+
+	api.CustomerPostcustomerHandler = customer.PostcustomerHandlerFunc(func(params customer.PostcustomerParams) middleware.Responder {
+		return api_get_customer.DoPostCustomer(params)
+	})
+
+	// Products
 
 	api.PreServerShutdown = func() {}
 
