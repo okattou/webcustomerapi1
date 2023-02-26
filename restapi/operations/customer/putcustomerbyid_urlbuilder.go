@@ -18,6 +18,15 @@ import (
 type PutcustomerbyidURL struct {
 	ID int64
 
+	Name    *string
+	Prenom  *string
+	Adresse *string
+	Email   *string
+	Pays    *string
+	Phone   *string
+	Phone2  *string
+	Ville   *string
+
 	_basePath string
 	// avoid unkeyed usage
 	_ struct{}
@@ -53,6 +62,74 @@ func (o *PutcustomerbyidURL) Build() (*url.URL, error) {
 
 	_basePath := o._basePath
 	_result.Path = golangswaggerpaths.Join(_basePath, _path)
+
+	qs := make(url.Values)
+
+	var nameQ string
+	if o.Name != nil {
+		nameQ = *o.Name
+	}
+	if nameQ != "" {
+		qs.Set("Name", nameQ)
+	}
+
+	var prenomQ string
+	if o.Prenom != nil {
+		prenomQ = *o.Prenom
+	}
+	if prenomQ != "" {
+		qs.Set("Prenom", prenomQ)
+	}
+
+	var adresseQ string
+	if o.Adresse != nil {
+		adresseQ = *o.Adresse
+	}
+	if adresseQ != "" {
+		qs.Set("adresse", adresseQ)
+	}
+
+	var emailQ string
+	if o.Email != nil {
+		emailQ = *o.Email
+	}
+	if emailQ != "" {
+		qs.Set("email", emailQ)
+	}
+
+	var paysQ string
+	if o.Pays != nil {
+		paysQ = *o.Pays
+	}
+	if paysQ != "" {
+		qs.Set("pays", paysQ)
+	}
+
+	var phoneQ string
+	if o.Phone != nil {
+		phoneQ = *o.Phone
+	}
+	if phoneQ != "" {
+		qs.Set("phone", phoneQ)
+	}
+
+	var phone2Q string
+	if o.Phone2 != nil {
+		phone2Q = *o.Phone2
+	}
+	if phone2Q != "" {
+		qs.Set("phone2", phone2Q)
+	}
+
+	var villeQ string
+	if o.Ville != nil {
+		villeQ = *o.Ville
+	}
+	if villeQ != "" {
+		qs.Set("ville", villeQ)
+	}
+
+	_result.RawQuery = qs.Encode()
 
 	return &_result, nil
 }

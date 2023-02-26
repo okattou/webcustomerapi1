@@ -21,6 +21,7 @@ import (
 
 	"github.com/webcustomerapi1/restapi/operations/connection"
 	"github.com/webcustomerapi1/restapi/operations/customer"
+	"github.com/webcustomerapi1/restapi/operations/produits"
 )
 
 // NewAPIAPI creates a new API instance
@@ -57,17 +58,29 @@ func NewAPIAPI(spec *loads.Document) *APIAPI {
 		CustomerGetcustomerbyidHandler: customer.GetcustomerbyidHandlerFunc(func(params customer.GetcustomerbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Getcustomerbyid has not yet been implemented")
 		}),
+		ProduitsGetproduitbyidHandler: produits.GetproduitbyidHandlerFunc(func(params produits.GetproduitbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation produits.Getproduitbyid has not yet been implemented")
+		}),
+		ProduitsGetproduitsHandler: produits.GetproduitsHandlerFunc(func(params produits.GetproduitsParams) middleware.Responder {
+			return middleware.NotImplemented("operation produits.Getproduits has not yet been implemented")
+		}),
 		ConnectionPostconectionHandler: connection.PostconectionHandlerFunc(func(params connection.PostconectionParams) middleware.Responder {
 			return middleware.NotImplemented("operation connection.Postconection has not yet been implemented")
 		}),
 		CustomerPostcustomerHandler: customer.PostcustomerHandlerFunc(func(params customer.PostcustomerParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Postcustomer has not yet been implemented")
 		}),
+		ProduitsPostproduitHandler: produits.PostproduitHandlerFunc(func(params produits.PostproduitParams) middleware.Responder {
+			return middleware.NotImplemented("operation produits.Postproduit has not yet been implemented")
+		}),
 		ConnectionPutconnectionbyidHandler: connection.PutconnectionbyidHandlerFunc(func(params connection.PutconnectionbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation connection.Putconnectionbyid has not yet been implemented")
 		}),
 		CustomerPutcustomerbyidHandler: customer.PutcustomerbyidHandlerFunc(func(params customer.PutcustomerbyidParams) middleware.Responder {
 			return middleware.NotImplemented("operation customer.Putcustomerbyid has not yet been implemented")
+		}),
+		ProduitsPutproduitsbyidHandler: produits.PutproduitsbyidHandlerFunc(func(params produits.PutproduitsbyidParams) middleware.Responder {
+			return middleware.NotImplemented("operation produits.Putproduitsbyid has not yet been implemented")
 		}),
 	}
 }
@@ -113,14 +126,22 @@ type APIAPI struct {
 	CustomerGetcustomerHandler customer.GetcustomerHandler
 	// CustomerGetcustomerbyidHandler sets the operation handler for the getcustomerbyid operation
 	CustomerGetcustomerbyidHandler customer.GetcustomerbyidHandler
+	// ProduitsGetproduitbyidHandler sets the operation handler for the getproduitbyid operation
+	ProduitsGetproduitbyidHandler produits.GetproduitbyidHandler
+	// ProduitsGetproduitsHandler sets the operation handler for the getproduits operation
+	ProduitsGetproduitsHandler produits.GetproduitsHandler
 	// ConnectionPostconectionHandler sets the operation handler for the postconection operation
 	ConnectionPostconectionHandler connection.PostconectionHandler
 	// CustomerPostcustomerHandler sets the operation handler for the postcustomer operation
 	CustomerPostcustomerHandler customer.PostcustomerHandler
+	// ProduitsPostproduitHandler sets the operation handler for the postproduit operation
+	ProduitsPostproduitHandler produits.PostproduitHandler
 	// ConnectionPutconnectionbyidHandler sets the operation handler for the putconnectionbyid operation
 	ConnectionPutconnectionbyidHandler connection.PutconnectionbyidHandler
 	// CustomerPutcustomerbyidHandler sets the operation handler for the putcustomerbyid operation
 	CustomerPutcustomerbyidHandler customer.PutcustomerbyidHandler
+	// ProduitsPutproduitsbyidHandler sets the operation handler for the putproduitsbyid operation
+	ProduitsPutproduitsbyidHandler produits.PutproduitsbyidHandler
 
 	// ServeError is called when an error is received, there is a default handler
 	// but you can set your own with this
@@ -210,17 +231,29 @@ func (o *APIAPI) Validate() error {
 	if o.CustomerGetcustomerbyidHandler == nil {
 		unregistered = append(unregistered, "customer.GetcustomerbyidHandler")
 	}
+	if o.ProduitsGetproduitbyidHandler == nil {
+		unregistered = append(unregistered, "produits.GetproduitbyidHandler")
+	}
+	if o.ProduitsGetproduitsHandler == nil {
+		unregistered = append(unregistered, "produits.GetproduitsHandler")
+	}
 	if o.ConnectionPostconectionHandler == nil {
 		unregistered = append(unregistered, "connection.PostconectionHandler")
 	}
 	if o.CustomerPostcustomerHandler == nil {
 		unregistered = append(unregistered, "customer.PostcustomerHandler")
 	}
+	if o.ProduitsPostproduitHandler == nil {
+		unregistered = append(unregistered, "produits.PostproduitHandler")
+	}
 	if o.ConnectionPutconnectionbyidHandler == nil {
 		unregistered = append(unregistered, "connection.PutconnectionbyidHandler")
 	}
 	if o.CustomerPutcustomerbyidHandler == nil {
 		unregistered = append(unregistered, "customer.PutcustomerbyidHandler")
+	}
+	if o.ProduitsPutproduitsbyidHandler == nil {
+		unregistered = append(unregistered, "produits.PutproduitsbyidHandler")
 	}
 
 	if len(unregistered) > 0 {
@@ -326,6 +359,14 @@ func (o *APIAPI) initHandlerCache() {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"]["/customer/{id}"] = customer.NewGetcustomerbyid(o.context, o.CustomerGetcustomerbyidHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/produits/{id}"] = produits.NewGetproduitbyid(o.context, o.ProduitsGetproduitbyidHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/produits"] = produits.NewGetproduits(o.context, o.ProduitsGetproduitsHandler)
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
@@ -334,6 +375,10 @@ func (o *APIAPI) initHandlerCache() {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
 	o.handlers["POST"]["/customer"] = customer.NewPostcustomer(o.context, o.CustomerPostcustomerHandler)
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/produits"] = produits.NewPostproduit(o.context, o.ProduitsPostproduitHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
@@ -342,6 +387,10 @@ func (o *APIAPI) initHandlerCache() {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
 	o.handlers["PUT"]["/customer/{id}"] = customer.NewPutcustomerbyid(o.context, o.CustomerPutcustomerbyidHandler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
+	}
+	o.handlers["PUT"]["/produits/{id}"] = produits.NewPutproduitsbyid(o.context, o.ProduitsPutproduitsbyidHandler)
 }
 
 // Serve creates a http handler to serve the API over HTTP

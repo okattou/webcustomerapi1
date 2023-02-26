@@ -9,9 +9,11 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // NewPutcustomerbyidParams creates a new PutcustomerbyidParams object
@@ -31,11 +33,43 @@ type PutcustomerbyidParams struct {
 	// HTTP Request Object
 	HTTPRequest *http.Request `json:"-"`
 
+	/*
+	  In: query
+	*/
+	Name *string
+	/*
+	  In: query
+	*/
+	Prenom *string
+	/*
+	  In: query
+	*/
+	Adresse *string
+	/*
+	  In: query
+	*/
+	Email *string
 	/*ID of user in database
 	  Required: true
 	  In: path
 	*/
 	ID int64
+	/*liste des pays
+	  In: query
+	*/
+	Pays *string
+	/*
+	  In: query
+	*/
+	Phone *string
+	/*
+	  In: query
+	*/
+	Phone2 *string
+	/*
+	  In: query
+	*/
+	Ville *string
 }
 
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
@@ -47,13 +81,127 @@ func (o *PutcustomerbyidParams) BindRequest(r *http.Request, route *middleware.M
 
 	o.HTTPRequest = r
 
+	qs := runtime.Values(r.URL.Query())
+
+	qName, qhkName, _ := qs.GetOK("Name")
+	if err := o.bindName(qName, qhkName, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
+	qPrenom, qhkPrenom, _ := qs.GetOK("Prenom")
+	if err := o.bindPrenom(qPrenom, qhkPrenom, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
+	qAdresse, qhkAdresse, _ := qs.GetOK("adresse")
+	if err := o.bindAdresse(qAdresse, qhkAdresse, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
+	qEmail, qhkEmail, _ := qs.GetOK("email")
+	if err := o.bindEmail(qEmail, qhkEmail, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
 	rID, rhkID, _ := route.Params.GetOK("id")
 	if err := o.bindID(rID, rhkID, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
+	qPays, qhkPays, _ := qs.GetOK("pays")
+	if err := o.bindPays(qPays, qhkPays, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
+	qPhone, qhkPhone, _ := qs.GetOK("phone")
+	if err := o.bindPhone(qPhone, qhkPhone, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
+	qPhone2, qhkPhone2, _ := qs.GetOK("phone2")
+	if err := o.bindPhone2(qPhone2, qhkPhone2, route.Formats); err != nil {
+		res = append(res, err)
+	}
+
+	qVille, qhkVille, _ := qs.GetOK("ville")
+	if err := o.bindVille(qVille, qhkVille, route.Formats); err != nil {
 		res = append(res, err)
 	}
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+// bindName binds and validates parameter Name from query.
+func (o *PutcustomerbyidParams) bindName(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Name = &raw
+
+	return nil
+}
+
+// bindPrenom binds and validates parameter Prenom from query.
+func (o *PutcustomerbyidParams) bindPrenom(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Prenom = &raw
+
+	return nil
+}
+
+// bindAdresse binds and validates parameter Adresse from query.
+func (o *PutcustomerbyidParams) bindAdresse(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Adresse = &raw
+
+	return nil
+}
+
+// bindEmail binds and validates parameter Email from query.
+func (o *PutcustomerbyidParams) bindEmail(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Email = &raw
+
 	return nil
 }
 
@@ -72,6 +220,92 @@ func (o *PutcustomerbyidParams) bindID(rawData []string, hasKey bool, formats st
 		return errors.InvalidType("id", "path", "int64", raw)
 	}
 	o.ID = value
+
+	return nil
+}
+
+// bindPays binds and validates parameter Pays from query.
+func (o *PutcustomerbyidParams) bindPays(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Pays = &raw
+
+	if err := o.validatePays(formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// validatePays carries on validations for parameter Pays
+func (o *PutcustomerbyidParams) validatePays(formats strfmt.Registry) error {
+
+	if err := validate.EnumCase("pays", "query", *o.Pays, []interface{}{"Afrique du Sud", "Afghanistan", "Albanie", "Algérie", "Allemagne", "Andorre", "Angola", "Antigua-et-Barbuda", "Arabie Saoudite", "Argentine", "Arménie", "Australie", "Autriche", "Azerbaïdjan", "Bahamas", "Bahreïn", "Bangladesh", "Barbade", "Belgique", "Belize", "Bénin", "Bhoutan", "Biélorussie", "Birmanie", "Bolivie", "Bosnie-Herzégovine", "Botswana", "Brésil", "Brunei", "Bulgarie", "Burkina Faso", "Burundi", "Cambodge", "Cameroun", "Canada", "Cap-Vert", "Chili", "Chine", "Chypre", "Colombie", "Comores", "Corée du Nord", "Corée du Sud", "Costa Rica", "Côte d’Ivoire", "Croatie", "Cuba", "Danemark", "Djibouti", "Dominique", "Égypte", "Émirats arabes unis", "Équateur", "Érythrée", "Espagne", "Eswatini", "Estonie", "États-Unis", "Éthiopie", "Fidji", "Finlande", "France", "Gabon", "Gambie", "Géorgie", "Ghana", "Grèce", "Grenade", "Guatemala", "Guinée", "Guinée équatoriale", "Guinée-Bissau", "Guyana", "Haïti", "Honduras", "Hongrie", "Îles Cook", "Îles Marshall", "Inde", "Indonésie", "Irak", "Iran", "Irlande", "Islande", "Israël", "Italie", "Jamaïque", "Japon", "Jordanie", "Kazakhstan", "Kenya", "Kirghizistan", "Kiribati", "Koweït", "Laos", "Lesotho", "Lettonie", "Liban", "Liberia", "Libye", "Liechtenstein", "Lituanie", "Luxembourg", "Macédoine", "Madagascar", "Malaisie", "Malawi", "Maldives", "Mali", "Malte", "Maroc", "Maurice", "Mauritanie", "Mexique", "Micronésie", "Moldavie", "Monaco", "Mongolie", "Monténégro", "Mozambique", "Namibie", "Nauru", "Népal", "Nicaragua", "Niger", "Nigeria", "Niue", "Norvège", "Nouvelle-Zélande", "Oman", "Ouganda", "Ouzbékistan", "Pakistan", "Palaos", "Palestine", "Panama", "Papouasie-Nouvelle-Guinée", "Paraguay", "Pays-Bas", "Pérou", "Philippines", "Pologne", "Portugal", "Qatar", "République centrafricaine", "République démocratique du Congi", "République Dominicaine", "République du Congo", "République tchèque", "Roumanie", "Royaume-Uni", "Russie", "Rwanda", "Saint-Kitts-et-Nevis", "Saint-Vincent-et-les-Grenadines", "Sainte-Lucie", "Saint-Marin", "Salomon", "Salvador", "Samoa", "São Tomé-et-Principe", "Sénégal", "Serbie", "Seychelles", "Sierra Leone", "Singapour", "Slovaquie", "Slovénie", "Somalie", "Soudan", "Soudan du Sud", "Sri Lanka", "Suède", "Suisse", "Suriname", "Syrie", "Tadjikistan", "Tanzanie", "Tchad", "Thaïlande", "Timor oriental", "Togo", "Tonga", "Trinité-et-Tobago", "Tunisie", "Turkménistan", "Turquie", "Tuvalu", "Ukraine", "Uruguay", "Vanuatu", "Vatican", "Venezuela", "Viêt Nam", "Yémen", "Zambie", "Zimbabwe"}, true); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// bindPhone binds and validates parameter Phone from query.
+func (o *PutcustomerbyidParams) bindPhone(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Phone = &raw
+
+	return nil
+}
+
+// bindPhone2 binds and validates parameter Phone2 from query.
+func (o *PutcustomerbyidParams) bindPhone2(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Phone2 = &raw
+
+	return nil
+}
+
+// bindVille binds and validates parameter Ville from query.
+func (o *PutcustomerbyidParams) bindVille(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	var raw string
+	if len(rawData) > 0 {
+		raw = rawData[len(rawData)-1]
+	}
+
+	// Required: false
+	// AllowEmptyValue: false
+
+	if raw == "" { // empty values pass all other validations
+		return nil
+	}
+	o.Ville = &raw
 
 	return nil
 }

@@ -449,6 +449,246 @@
             "name": "id",
             "in": "path",
             "required": true
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "Prenom",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "phone2",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "adresse",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "ville",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pays",
+            "type": "string",
+            "description": "liste des pays",
+            "enum": [
+              "Afrique du Sud",
+              "Afghanistan",
+              "Albanie",
+              "Algérie",
+              "Allemagne",
+              "Andorre",
+              "Angola",
+              "Antigua-et-Barbuda",
+              "Arabie Saoudite",
+              "Argentine",
+              "Arménie",
+              "Australie",
+              "Autriche",
+              "Azerbaïdjan",
+              "Bahamas",
+              "Bahreïn",
+              "Bangladesh",
+              "Barbade",
+              "Belgique",
+              "Belize",
+              "Bénin",
+              "Bhoutan",
+              "Biélorussie",
+              "Birmanie",
+              "Bolivie",
+              "Bosnie-Herzégovine",
+              "Botswana",
+              "Brésil",
+              "Brunei",
+              "Bulgarie",
+              "Burkina Faso",
+              "Burundi",
+              "Cambodge",
+              "Cameroun",
+              "Canada",
+              "Cap-Vert",
+              "Chili",
+              "Chine",
+              "Chypre",
+              "Colombie",
+              "Comores",
+              "Corée du Nord",
+              "Corée du Sud",
+              "Costa Rica",
+              "Côte d’Ivoire",
+              "Croatie",
+              "Cuba",
+              "Danemark",
+              "Djibouti",
+              "Dominique",
+              "Égypte",
+              "Émirats arabes unis",
+              "Équateur",
+              "Érythrée",
+              "Espagne",
+              "Eswatini",
+              "Estonie",
+              "États-Unis",
+              "Éthiopie",
+              "Fidji",
+              "Finlande",
+              "France",
+              "Gabon",
+              "Gambie",
+              "Géorgie",
+              "Ghana",
+              "Grèce",
+              "Grenade",
+              "Guatemala",
+              "Guinée",
+              "Guinée équatoriale",
+              "Guinée-Bissau",
+              "Guyana",
+              "Haïti",
+              "Honduras",
+              "Hongrie",
+              "Îles Cook",
+              "Îles Marshall",
+              "Inde",
+              "Indonésie",
+              "Irak",
+              "Iran",
+              "Irlande",
+              "Islande",
+              "Israël",
+              "Italie",
+              "Jamaïque",
+              "Japon",
+              "Jordanie",
+              "Kazakhstan",
+              "Kenya",
+              "Kirghizistan",
+              "Kiribati",
+              "Koweït",
+              "Laos",
+              "Lesotho",
+              "Lettonie",
+              "Liban",
+              "Liberia",
+              "Libye",
+              "Liechtenstein",
+              "Lituanie",
+              "Luxembourg",
+              "Macédoine",
+              "Madagascar",
+              "Malaisie",
+              "Malawi",
+              "Maldives",
+              "Mali",
+              "Malte",
+              "Maroc",
+              "Maurice",
+              "Mauritanie",
+              "Mexique",
+              "Micronésie",
+              "Moldavie",
+              "Monaco",
+              "Mongolie",
+              "Monténégro",
+              "Mozambique",
+              "Namibie",
+              "Nauru",
+              "Népal",
+              "Nicaragua",
+              "Niger",
+              "Nigeria",
+              "Niue",
+              "Norvège",
+              "Nouvelle-Zélande",
+              "Oman",
+              "Ouganda",
+              "Ouzbékistan",
+              "Pakistan",
+              "Palaos",
+              "Palestine",
+              "Panama",
+              "Papouasie-Nouvelle-Guinée",
+              "Paraguay",
+              "Pays-Bas",
+              "Pérou",
+              "Philippines",
+              "Pologne",
+              "Portugal",
+              "Qatar",
+              "République centrafricaine",
+              "République démocratique du Congi",
+              "République Dominicaine",
+              "République du Congo",
+              "République tchèque",
+              "Roumanie",
+              "Royaume-Uni",
+              "Russie",
+              "Rwanda",
+              "Saint-Kitts-et-Nevis",
+              "Saint-Vincent-et-les-Grenadines",
+              "Sainte-Lucie",
+              "Saint-Marin",
+              "Salomon",
+              "Salvador",
+              "Samoa",
+              "São Tomé-et-Principe",
+              "Sénégal",
+              "Serbie",
+              "Seychelles",
+              "Sierra Leone",
+              "Singapour",
+              "Slovaquie",
+              "Slovénie",
+              "Somalie",
+              "Soudan",
+              "Soudan du Sud",
+              "Sri Lanka",
+              "Suède",
+              "Suisse",
+              "Suriname",
+              "Syrie",
+              "Tadjikistan",
+              "Tanzanie",
+              "Tchad",
+              "Thaïlande",
+              "Timor oriental",
+              "Togo",
+              "Tonga",
+              "Trinité-et-Tobago",
+              "Tunisie",
+              "Turkménistan",
+              "Turquie",
+              "Tuvalu",
+              "Ukraine",
+              "Uruguay",
+              "Vanuatu",
+              "Vatican",
+              "Venezuela",
+              "Viêt Nam",
+              "Yémen",
+              "Zambie",
+              "Zimbabwe"
+            ]
           }
         ],
         "responses": {
@@ -456,6 +696,144 @@
             "description": "information connection",
             "schema": {
               "$ref": "#/definitions/customer"
+            }
+          }
+        }
+      }
+    },
+    "/produits": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "produits"
+        ],
+        "operationId": "getproduits",
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "type": "array",
+              "description": "contains the actual greeting as plain text",
+              "items": {
+                "$ref": "#/definitions/produits"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "produits"
+        ],
+        "operationId": "postproduit",
+        "parameters": [
+          {
+            "name": "nom",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "prix",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "link_photo",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "link_photo_emplacement",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a greeting",
+            "schema": {
+              "$ref": "#/definitions/produits"
+            }
+          }
+        }
+      }
+    },
+    "/produits/{id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "produits"
+        ],
+        "operationId": "getproduitbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information produits",
+            "schema": {
+              "$ref": "#/definitions/produits"
+            }
+          }
+        }
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "produits"
+        ],
+        "operationId": "putproduitsbyid",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of user in database",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "nom",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "prix",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "link_photo",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "link_photo_emplacement",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information connection",
+            "schema": {
+              "$ref": "#/definitions/produits"
             }
           }
         }
@@ -498,7 +876,55 @@
         "Name": {
           "description": "Nom du client",
           "type": "string",
-          "x-go-name": "NameClient"
+          "x-go-name": "name"
+        },
+        "Phone": {
+          "description": "Phone",
+          "type": "string",
+          "x-go-name": "phone"
+        },
+        "Phone2": {
+          "description": "Phone2",
+          "type": "string",
+          "x-go-name": "phone2"
+        },
+        "email": {
+          "description": "email",
+          "type": "string",
+          "x-go-name": "email"
+        },
+        "adresse": {
+          "description": "adresse",
+          "type": "string",
+          "x-go-name": "adresse"
+        },
+        "ville": {
+          "description": "ville",
+          "type": "string",
+          "x-go-name": "ville"
+        },
+        "pays": {
+          "description": "pays",
+          "type": "string",
+          "x-go-name": "pays"
+        }
+      }
+    },
+    "produits": {
+      "description": "information clients",
+      "type": "object",
+      "properties": {
+        "nom": {
+          "type": "string"
+        },
+        "prix": {
+          "type": "string"
+        },
+        "link_photo": {
+          "type": "string"
+        },
+        "link_photo_emplacement": {
+          "type": "string"
         }
       }
     }

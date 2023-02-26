@@ -58,7 +58,7 @@ var TransformCustomer = func(p int64) *models.Customer {
 	}
 	
 	if len(repos.Customers)>0 {
-		out=&models.Customer{ID:int64(repos.Customers[0].ID), NameClient: repos.Customers[0].Name}
+		out=&models.Customer{ID:int64(repos.Customers[0].ID), Name: repos.Customers[0].Name}
 	}else{
 		out=&models.Customer{}
 	}
@@ -75,7 +75,7 @@ var TransformCustomerall = func() []*models.Customer {
 	}
 	data:= make([]*models.Customer,0)
 	for i := 0; i < len(repos.Customers); i++ {
-		data =append(data, &models.Customer{ID:int64(repos.Customers[i].ID), NameClient: repos.Customers[i].Name})
+		data =append(data, &models.Customer{ID:int64(repos.Customers[i].ID), Name: repos.Customers[i].Name})
 	}
 	return data
 }

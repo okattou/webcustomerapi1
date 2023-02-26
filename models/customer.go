@@ -20,8 +20,26 @@ type Customer struct {
 	// id in database
 	ID int64 `json:"ID,omitempty"`
 
+	// adresse
+	Adresse string `json:"adresse,omitempty"`
+
+	// email
+	Email string `json:"email,omitempty"`
+
 	// Nom du client
-	NameClient string `json:"Name,omitempty"`
+	Name string `json:"Name,omitempty"`
+
+	// pays
+	Pays string `json:"pays,omitempty"`
+
+	// Phone
+	Phone string `json:"Phone,omitempty"`
+
+	// Phone2
+	Phone2 string `json:"Phone2,omitempty"`
+
+	// ville
+	Ville string `json:"ville,omitempty"`
 }
 
 // Validate validates this customer

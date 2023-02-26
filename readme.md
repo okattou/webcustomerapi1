@@ -116,8 +116,12 @@ CREATE TABLE contacts(
    contact_id INT GENERATED ALWAYS AS IDENTITY,
    customer_id INT,
    contact_name VARCHAR(255) NOT NULL,
+   prenom VARCHAR(100),
    phone VARCHAR(15),
+   phone2 VARCHAR(15),
    email VARCHAR(100),
+   pays  VARCHAR(100),
+   ville VARCHAR(100),
    PRIMARY KEY(contact_id),
    CONSTRAINT fk_customer
       FOREIGN KEY(customer_id) 
