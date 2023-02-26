@@ -47,7 +47,8 @@ func configureAPI(api *operations.APIAPI) http.Handler {
 
 	api.JSONConsumer = runtime.JSONConsumer()
 
-	
+	// Connection 
+
 	api.ConnectionGetconectionHandler = connection.GetconectionHandlerFunc(func(params connection.GetconectionParams) middleware.Responder {
 		return api_get_connection.DoGetConnectionAll(params)
 	})
@@ -55,6 +56,15 @@ func configureAPI(api *operations.APIAPI) http.Handler {
 			return api_get_connection.DoGetConnection(params)
 	})
 
+	api.ConnectionPostconectionHandler=connection.PostconectionHandlerFunc(func(params connection.PostconectionParams) middleware.Responder {
+		return api_get_connection.DoPostConnection(params)
+	})
+
+	api.ConnectionPutconnectionbyidHandler= connection.PutconnectionbyidHandlerFunc(func(params connection.PutconnectionbyidParams) middleware.Responder {
+		return api_get_connection.DoPutConnection(params)
+	})
+
+	// customer
 	api.CustomerGetcustomerbyidHandler = customer.GetcustomerbyidHandlerFunc(func(params customer.GetcustomerbyidParams) middleware.Responder {
 		return api_get_customer.DoGetCustomer(params)
 	})
@@ -62,6 +72,7 @@ func configureAPI(api *operations.APIAPI) http.Handler {
 	api.CustomerGetcustomerHandler = customer.GetcustomerHandlerFunc(func(params customer.GetcustomerParams) middleware.Responder {
 		return api_get_customer.DoGetCustomerAll(params)
 	})
+
 
 	api.PreServerShutdown = func() {}
 

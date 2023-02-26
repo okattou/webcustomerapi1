@@ -89,9 +89,10 @@ DROP TABLE IF EXISTS connection_customers;
 DROP TABLE IF EXISTS contacts;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS produits;
+DROP TABLE IF EXISTS factures;
 
 CREATE TABLE IF NOT EXISTS connection (
-  connect_id INT NOT NULL,
+  connect_id INT GENERATED ALWAYS AS IDENTITY,
   ip varchar(250) NOT NULL,
   date_connect timestamp  NOT NULL,
   PRIMARY KEY (connect_id)
@@ -139,13 +140,23 @@ CREATE TABLE produits(
    PRIMARY KEY(produits_id)
 );
 
-INSERT INTO connection(connect_ip,ip,date_connect)
+CREATE TABLE factures(
+   facture_id INT GENERATED ALWAYS AS IDENTITY,
+   id INT,
+   id_produits VARCHAR(255) NOT NULL,
+   nom_produits VARCHAR(255),
+   prix_prix INT,
+   PRIMARY KEY(facture_id)
+);
+
+
+INSERT INTO connection(connect_id,ip,date_connect)
 VALUES(1,'192.168.1.21',now()),
 (2,'192.168.1.21',now());
 
-INSERT INTO customers(customer_id,customer_name)
-VALUES(1,'John Doe'),
-(2,'Jane Doe');
+INSERT INTO customers(customer_name)
+VALUES('John Doe'),
+('Jane Doe');
 
 
 INSERT INTO contacts(customer_id, contact_name, phone, email)
