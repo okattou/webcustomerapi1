@@ -73,7 +73,8 @@ export DBPORT=9006
 export DBUSER=postgres
 export DBPASS=postgres
 export DBNAME=postgres
-export HOST=192.168.1.21
+export HOST=127.0.0.1
+export PORT=8080
 
 go run cmd/api-server/main.go
 
